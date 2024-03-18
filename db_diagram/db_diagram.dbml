@@ -1,0 +1,27 @@
+// Diagram generated on: https://dbdiagram.io/d
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table days {
+  id integer [primary key, increment]
+  date timestamp [unique]
+  createdAt timestamp [default: 'date.now()']
+  deletedAt timestamp [null]
+}
+
+Table medals {
+  id integer [primary key, increment]
+  name varchar [unique]
+  description varchar [null]
+  emoji varchar [unique]
+  createdAt timestamp [default: 'date.now()']
+  deletedAt timestamp [null]
+}
+
+Table days_to_medals {
+  dayId integer [primary key]
+  medalId integer [primary key]
+}
+
+Ref: days.id < days_to_medals.dayId
+Ref: medals.id < days_to_medals.medalId

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:habit_forge/src/models/database.dart';
+import 'package:habit_forge/src/calendar_feature/day_container.dart';
+import 'package:habit_forge/src/medals_feature/medals_details_view.dart';
 
 import '../settings/settings_view.dart';
-import 'sample_item.dart';
-import 'sample_item_details_view.dart';
 import 'package:intl/intl.dart';
+
+import 'package:drift_db_viewer/drift_db_viewer.dart';
 
 class CalendarGridView extends StatefulWidget {
   const CalendarGridView({
@@ -92,7 +95,7 @@ class _CalendarGridViewState extends State<CalendarGridView> {
         },
       ),
     );
-    List<Widget> daysWidgets = List.generate(9, (i) {
+    List<Widget> daysWidgets = List.generate(11, (i) {
       if (i % 2 != 0) {
         return const Divider(
           height: 1,
@@ -116,13 +119,7 @@ class _CalendarGridViewState extends State<CalendarGridView> {
               if (dayIndex < 0 || dayIndex > currentMonthTotalDays) {
                 dayIndex = 0;
               }
-              Widget widget = Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.grey[900],
-                child: Center(
-                  child: dayIndex < 10 ? Text("0$dayIndex") : Text("$dayIndex"),
-                ),
-              );
+              Widget widget = DayContainer(dayIndex: dayIndex);
               if (0 == dayIndex) {
                 return Flexible(
                   flex: 1,
@@ -148,20 +145,55 @@ class _CalendarGridViewState extends State<CalendarGridView> {
     return Scaffold(
       appBar: AppBar(
         title: Text('$currentMonthName $currentYear'),
-        actions: [
+        actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.event),
+            icon: const Icon(Icons.calendar_today),
             onPressed: () {
               updateCurrentDate(DateTime(currentYear, currentMonthIndex + 1));
             },
           ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              // Navigate to the settings page. If the user leaves and returns
-              // to the app after it has been killed while running in the
-              // background, the navigation stack is restored.
-              Navigator.restorablePushNamed(context, SettingsView.routeName);
+          PopupMenuButton<String>(
+            onSelected: (String choice) {
+              switch (choice) {
+                case 'Settings':
+                  Navigator.restorablePushNamed(
+                    context,
+                    SettingsView.routeName,
+                  );
+                  break;
+                case 'Database view':
+                  AppDatabase dbInstance = AppDatabase.instance;
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => DriftDbViewer(dbInstance),
+                    ),
+                  );
+                  break;
+                case 'Medals':
+                  Navigator.restorablePushNamed(
+                    context,
+                    MedalsDetailsView.routeName,
+                  );
+                  break;
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return {
+                ['Medals', const Icon(Icons.military_tech)],
+                ['Settings', const Icon(Icons.settings)],
+                ['Database view', const Icon(Icons.table_view)],
+              }.map((List choice) {
+                return PopupMenuItem<String>(
+                  value: choice[0],
+                  child: Row(
+                    children: [
+                      choice[1],
+                      const SizedBox(width: 20),
+                      Text(choice[0]),
+                    ],
+                  ),
+                );
+              }).toList();
             },
           ),
         ],

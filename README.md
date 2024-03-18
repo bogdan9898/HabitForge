@@ -12,6 +12,14 @@ For help getting started with Flutter development, view the
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+To generate drift framework codebase for db:
+
+`dart run build_runner build`
+
+To run dev build:
+
+`flutter run`
+
 ## Assets
 
 The `assets` directory houses images, fonts, and any other files you want to
