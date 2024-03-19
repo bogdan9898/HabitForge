@@ -1,5 +1,8 @@
+import 'package:drift/drift.dart' as drift;
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
+import 'package:habit_forge/src/models/database.dart';
+import 'package:habit_forge/src/models/medals_repository.dart';
+import 'package:provider/provider.dart';
 
 class MedalsAddForm extends StatefulWidget {
   const MedalsAddForm({
@@ -66,9 +69,18 @@ class _MedalsAddFormState extends State<MedalsAddForm> {
               },
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   print("wip... sending to db...");
+                  await MedalDao(Provider.of<AppDatabase>(
+                    context,
+                    listen: false,
+                  )).createMedal(
+                    const MedalsModelCompanion(
+                      name: drift.Value('test'),
+                      emoji: drift.Value('T'),
+                    ),
+                  );
                 }
               },
               child: const Text('Submit'),

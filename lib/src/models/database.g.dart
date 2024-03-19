@@ -3,11 +3,11 @@
 part of 'database.dart';
 
 // ignore_for_file: type=lint
-class $DaysTable extends Days with TableInfo<$DaysTable, Day> {
+class $DaysModelTable extends DaysModel with TableInfo<$DaysModelTable, Day> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $DaysTable(this.attachedDatabase, [this._alias]);
+  $DaysModelTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
@@ -44,7 +44,7 @@ class $DaysTable extends Days with TableInfo<$DaysTable, Day> {
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'days';
+  static const String $name = 'days_model';
   @override
   VerificationContext validateIntegrity(Insertable<Day> instance,
       {bool isInserting = false}) {
@@ -88,8 +88,8 @@ class $DaysTable extends Days with TableInfo<$DaysTable, Day> {
   }
 
   @override
-  $DaysTable createAlias(String alias) {
-    return $DaysTable(attachedDatabase, alias);
+  $DaysModelTable createAlias(String alias) {
+    return $DaysModelTable(attachedDatabase, alias);
   }
 }
 
@@ -115,8 +115,8 @@ class Day extends DataClass implements Insertable<Day> {
     return map;
   }
 
-  DaysCompanion toCompanion(bool nullToAbsent) {
-    return DaysCompanion(
+  DaysModelCompanion toCompanion(bool nullToAbsent) {
+    return DaysModelCompanion(
       id: Value(id),
       date: Value(date),
       createdAt: Value(createdAt),
@@ -181,18 +181,18 @@ class Day extends DataClass implements Insertable<Day> {
           other.deletedAt == this.deletedAt);
 }
 
-class DaysCompanion extends UpdateCompanion<Day> {
+class DaysModelCompanion extends UpdateCompanion<Day> {
   final Value<int> id;
   final Value<DateTime> date;
   final Value<DateTime> createdAt;
   final Value<DateTime?> deletedAt;
-  const DaysCompanion({
+  const DaysModelCompanion({
     this.id = const Value.absent(),
     this.date = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.deletedAt = const Value.absent(),
   });
-  DaysCompanion.insert({
+  DaysModelCompanion.insert({
     this.id = const Value.absent(),
     required DateTime date,
     this.createdAt = const Value.absent(),
@@ -212,12 +212,12 @@ class DaysCompanion extends UpdateCompanion<Day> {
     });
   }
 
-  DaysCompanion copyWith(
+  DaysModelCompanion copyWith(
       {Value<int>? id,
       Value<DateTime>? date,
       Value<DateTime>? createdAt,
       Value<DateTime?>? deletedAt}) {
-    return DaysCompanion(
+    return DaysModelCompanion(
       id: id ?? this.id,
       date: date ?? this.date,
       createdAt: createdAt ?? this.createdAt,
@@ -245,7 +245,7 @@ class DaysCompanion extends UpdateCompanion<Day> {
 
   @override
   String toString() {
-    return (StringBuffer('DaysCompanion(')
+    return (StringBuffer('DaysModelCompanion(')
           ..write('id: $id, ')
           ..write('date: $date, ')
           ..write('createdAt: $createdAt, ')
@@ -255,11 +255,12 @@ class DaysCompanion extends UpdateCompanion<Day> {
   }
 }
 
-class $MedalsTable extends Medals with TableInfo<$MedalsTable, Medal> {
+class $MedalsModelTable extends MedalsModel
+    with TableInfo<$MedalsModelTable, Medal> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $MedalsTable(this.attachedDatabase, [this._alias]);
+  $MedalsModelTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
@@ -310,7 +311,7 @@ class $MedalsTable extends Medals with TableInfo<$MedalsTable, Medal> {
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'medals';
+  static const String $name = 'medals_model';
   @override
   VerificationContext validateIntegrity(Insertable<Medal> instance,
       {bool isInserting = false}) {
@@ -370,8 +371,8 @@ class $MedalsTable extends Medals with TableInfo<$MedalsTable, Medal> {
   }
 
   @override
-  $MedalsTable createAlias(String alias) {
-    return $MedalsTable(attachedDatabase, alias);
+  $MedalsModelTable createAlias(String alias) {
+    return $MedalsModelTable(attachedDatabase, alias);
   }
 }
 
@@ -405,8 +406,8 @@ class Medal extends DataClass implements Insertable<Medal> {
     return map;
   }
 
-  MedalsCompanion toCompanion(bool nullToAbsent) {
-    return MedalsCompanion(
+  MedalsModelCompanion toCompanion(bool nullToAbsent) {
+    return MedalsModelCompanion(
       id: Value(id),
       name: Value(name),
       description: description == null && nullToAbsent
@@ -488,14 +489,14 @@ class Medal extends DataClass implements Insertable<Medal> {
           other.deletedAt == this.deletedAt);
 }
 
-class MedalsCompanion extends UpdateCompanion<Medal> {
+class MedalsModelCompanion extends UpdateCompanion<Medal> {
   final Value<int> id;
   final Value<String> name;
   final Value<String?> description;
   final Value<String> emoji;
   final Value<DateTime> createdAt;
   final Value<DateTime?> deletedAt;
-  const MedalsCompanion({
+  const MedalsModelCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
     this.description = const Value.absent(),
@@ -503,7 +504,7 @@ class MedalsCompanion extends UpdateCompanion<Medal> {
     this.createdAt = const Value.absent(),
     this.deletedAt = const Value.absent(),
   });
-  MedalsCompanion.insert({
+  MedalsModelCompanion.insert({
     this.id = const Value.absent(),
     required String name,
     this.description = const Value.absent(),
@@ -530,14 +531,14 @@ class MedalsCompanion extends UpdateCompanion<Medal> {
     });
   }
 
-  MedalsCompanion copyWith(
+  MedalsModelCompanion copyWith(
       {Value<int>? id,
       Value<String>? name,
       Value<String?>? description,
       Value<String>? emoji,
       Value<DateTime>? createdAt,
       Value<DateTime?>? deletedAt}) {
-    return MedalsCompanion(
+    return MedalsModelCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
       description: description ?? this.description,
@@ -573,7 +574,7 @@ class MedalsCompanion extends UpdateCompanion<Medal> {
 
   @override
   String toString() {
-    return (StringBuffer('MedalsCompanion(')
+    return (StringBuffer('MedalsModelCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('description: $description, ')
@@ -585,12 +586,12 @@ class MedalsCompanion extends UpdateCompanion<Medal> {
   }
 }
 
-class $DaysToMedalsTable extends DaysToMedals
-    with TableInfo<$DaysToMedalsTable, DaysToMedal> {
+class $DaysToMedalsModelTable extends DaysToMedalsModel
+    with TableInfo<$DaysToMedalsModelTable, DaysToMedals> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $DaysToMedalsTable(this.attachedDatabase, [this._alias]);
+  $DaysToMedalsModelTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _dayIdMeta = const VerificationMeta('dayId');
   @override
   late final GeneratedColumn<int> dayId = GeneratedColumn<int>(
@@ -598,7 +599,7 @@ class $DaysToMedalsTable extends DaysToMedals
       type: DriftSqlType.int,
       requiredDuringInsert: true,
       defaultConstraints:
-          GeneratedColumn.constraintIsAlways('REFERENCES days (id)'));
+          GeneratedColumn.constraintIsAlways('REFERENCES days_model (id)'));
   static const VerificationMeta _medalIdMeta =
       const VerificationMeta('medalId');
   @override
@@ -607,16 +608,16 @@ class $DaysToMedalsTable extends DaysToMedals
       type: DriftSqlType.int,
       requiredDuringInsert: true,
       defaultConstraints:
-          GeneratedColumn.constraintIsAlways('REFERENCES medals (id)'));
+          GeneratedColumn.constraintIsAlways('REFERENCES medals_model (id)'));
   @override
   List<GeneratedColumn> get $columns => [dayId, medalId];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'days_to_medals';
+  static const String $name = 'days_to_medals_model';
   @override
-  VerificationContext validateIntegrity(Insertable<DaysToMedal> instance,
+  VerificationContext validateIntegrity(Insertable<DaysToMedals> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -638,9 +639,9 @@ class $DaysToMedalsTable extends DaysToMedals
   @override
   Set<GeneratedColumn> get $primaryKey => {dayId, medalId};
   @override
-  DaysToMedal map(Map<String, dynamic> data, {String? tablePrefix}) {
+  DaysToMedals map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return DaysToMedal(
+    return DaysToMedals(
       dayId: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}day_id'])!,
       medalId: attachedDatabase.typeMapping
@@ -649,15 +650,15 @@ class $DaysToMedalsTable extends DaysToMedals
   }
 
   @override
-  $DaysToMedalsTable createAlias(String alias) {
-    return $DaysToMedalsTable(attachedDatabase, alias);
+  $DaysToMedalsModelTable createAlias(String alias) {
+    return $DaysToMedalsModelTable(attachedDatabase, alias);
   }
 }
 
-class DaysToMedal extends DataClass implements Insertable<DaysToMedal> {
+class DaysToMedals extends DataClass implements Insertable<DaysToMedals> {
   final int dayId;
   final int medalId;
-  const DaysToMedal({required this.dayId, required this.medalId});
+  const DaysToMedals({required this.dayId, required this.medalId});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -666,17 +667,17 @@ class DaysToMedal extends DataClass implements Insertable<DaysToMedal> {
     return map;
   }
 
-  DaysToMedalsCompanion toCompanion(bool nullToAbsent) {
-    return DaysToMedalsCompanion(
+  DaysToMedalsModelCompanion toCompanion(bool nullToAbsent) {
+    return DaysToMedalsModelCompanion(
       dayId: Value(dayId),
       medalId: Value(medalId),
     );
   }
 
-  factory DaysToMedal.fromJson(Map<String, dynamic> json,
+  factory DaysToMedals.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return DaysToMedal(
+    return DaysToMedals(
       dayId: serializer.fromJson<int>(json['dayId']),
       medalId: serializer.fromJson<int>(json['medalId']),
     );
@@ -690,13 +691,13 @@ class DaysToMedal extends DataClass implements Insertable<DaysToMedal> {
     };
   }
 
-  DaysToMedal copyWith({int? dayId, int? medalId}) => DaysToMedal(
+  DaysToMedals copyWith({int? dayId, int? medalId}) => DaysToMedals(
         dayId: dayId ?? this.dayId,
         medalId: medalId ?? this.medalId,
       );
   @override
   String toString() {
-    return (StringBuffer('DaysToMedal(')
+    return (StringBuffer('DaysToMedals(')
           ..write('dayId: $dayId, ')
           ..write('medalId: $medalId')
           ..write(')'))
@@ -708,27 +709,27 @@ class DaysToMedal extends DataClass implements Insertable<DaysToMedal> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is DaysToMedal &&
+      (other is DaysToMedals &&
           other.dayId == this.dayId &&
           other.medalId == this.medalId);
 }
 
-class DaysToMedalsCompanion extends UpdateCompanion<DaysToMedal> {
+class DaysToMedalsModelCompanion extends UpdateCompanion<DaysToMedals> {
   final Value<int> dayId;
   final Value<int> medalId;
   final Value<int> rowid;
-  const DaysToMedalsCompanion({
+  const DaysToMedalsModelCompanion({
     this.dayId = const Value.absent(),
     this.medalId = const Value.absent(),
     this.rowid = const Value.absent(),
   });
-  DaysToMedalsCompanion.insert({
+  DaysToMedalsModelCompanion.insert({
     required int dayId,
     required int medalId,
     this.rowid = const Value.absent(),
   })  : dayId = Value(dayId),
         medalId = Value(medalId);
-  static Insertable<DaysToMedal> custom({
+  static Insertable<DaysToMedals> custom({
     Expression<int>? dayId,
     Expression<int>? medalId,
     Expression<int>? rowid,
@@ -740,9 +741,9 @@ class DaysToMedalsCompanion extends UpdateCompanion<DaysToMedal> {
     });
   }
 
-  DaysToMedalsCompanion copyWith(
+  DaysToMedalsModelCompanion copyWith(
       {Value<int>? dayId, Value<int>? medalId, Value<int>? rowid}) {
-    return DaysToMedalsCompanion(
+    return DaysToMedalsModelCompanion(
       dayId: dayId ?? this.dayId,
       medalId: medalId ?? this.medalId,
       rowid: rowid ?? this.rowid,
@@ -766,7 +767,7 @@ class DaysToMedalsCompanion extends UpdateCompanion<DaysToMedal> {
 
   @override
   String toString() {
-    return (StringBuffer('DaysToMedalsCompanion(')
+    return (StringBuffer('DaysToMedalsModelCompanion(')
           ..write('dayId: $dayId, ')
           ..write('medalId: $medalId, ')
           ..write('rowid: $rowid')
@@ -777,13 +778,14 @@ class DaysToMedalsCompanion extends UpdateCompanion<DaysToMedal> {
 
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
-  late final $DaysTable days = $DaysTable(this);
-  late final $MedalsTable medals = $MedalsTable(this);
-  late final $DaysToMedalsTable daysToMedals = $DaysToMedalsTable(this);
+  late final $DaysModelTable daysModel = $DaysModelTable(this);
+  late final $MedalsModelTable medalsModel = $MedalsModelTable(this);
+  late final $DaysToMedalsModelTable daysToMedalsModel =
+      $DaysToMedalsModelTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [days, medals, daysToMedals];
+      [daysModel, medalsModel, daysToMedalsModel];
 }

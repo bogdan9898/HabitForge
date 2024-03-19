@@ -13,7 +13,7 @@ import 'package:habit_forge/src/models/days_to_medals.dart';
 
 part 'database.g.dart';
 
-@DriftDatabase(tables: [Days, Medals, DaysToMedals])
+@DriftDatabase(tables: [DaysModel, MedalsModel, DaysToMedalsModel])
 class AppDatabase extends _$AppDatabase {
   static final AppDatabase _instance = AppDatabase._();
 
