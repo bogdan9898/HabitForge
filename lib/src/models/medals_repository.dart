@@ -8,7 +8,7 @@ part 'medals_repository.g.dart';
 class MedalDao extends DatabaseAccessor<AppDatabase> with _$MedalDaoMixin {
   MedalDao(AppDatabase db) : super(db);
 
-  Future<Medal> createMedal(MedalsModelCompanion newMedal) async {
+  Future<Medal?> createMedal(MedalsModelCompanion newMedal) {
     return into(medalsModel).insertReturning(newMedal);
   }
 
@@ -17,7 +17,7 @@ class MedalDao extends DatabaseAccessor<AppDatabase> with _$MedalDaoMixin {
     throw UnimplementedError();
   }
 
-  Stream<Medal> watchMedalById(int id) {
+  Stream<Medal?> watchMedalById(int id) {
     return (select(medalsModel)..where((t) => t.id.equals(id))).watchSingle();
   }
 
